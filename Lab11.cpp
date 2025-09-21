@@ -41,19 +41,29 @@ void addSong(Playlist &playlist, string newSong)
         {
             playlist.maxSongs *= 2;
         }
-    }
 
-    // initialize new dynamic array
+            // initialize new dynamic array
     string *songs = new string[playlist.maxSongs];
 
-    // copy over old songs into new array
-    for (int i = 0; i < playlist.numSongs; i++)
-    {
-        songs[i] = playlist.songs[i];
+        // copy over old songs into new array
+        for (int i = 0; i < playlist.numSongs; i++)
+        {
+            songs[i] = playlist.songs[i];
+        }
+
+        // free up memory
+        delete [] playlist.songs;
+
+        // update object playlist with new value
+        playlist.songs = songs;
     }
 
-    // free up memory
-    delete [] playlist.songs;
+
+    // add the song after we're done growing the array if needed
+    playlist.songs[playlist.numSongs] = newSong;
+
+    // update new size + 1.
+    playlist.numSongs++;
     
 
 }
