@@ -13,6 +13,9 @@ struct Playlist
 
     // size of the array
     int numSongs;
+
+    // max mem for array
+    int maxSongs;   
 };
 
 int main()
@@ -27,7 +30,32 @@ Done through deleting array and creating a new one with more size
 */
 void addSong(Playlist &playlist, string newSong)
 {
+    // allocate more memory if playlist array is full
+    if (playlist.numSongs == playlist.maxSongs)
+    {
+        if (playlist.maxSongs == 0)
+        {
+            playlist.maxSongs == 1;
+        }
+        else
+        {
+            playlist.maxSongs *= 2;
+        }
+    }
+
+    // initialize new dynamic array
+    string *songs = new string[playlist.maxSongs];
+
+    // copy over old songs into new array
+    for (int i = 0; i < playlist.numSongs; i++)
+    {
+        songs[i] = playlist.songs[i];
+    }
+
+    // free up memory
+    delete [] playlist.songs;
     
+
 }
 
 
