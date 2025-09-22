@@ -4,10 +4,6 @@
 using namespace std;
 
 
-// function protos
-void addSong(Playlist &playlist, string newSong);
-void deletePlaylist(Playlist &playlist);
-void outputPlaylist(Playlist &playlist);
 
 
 // Will store the name, artists in the playlist, and some song names
@@ -24,8 +20,27 @@ struct Playlist
     int maxSongs;   
 };
 
+
+// function protos
+void addSong(Playlist &playlist, string newSong);
+void deletePlaylist(Playlist &playlist);
+void outputPlaylist(Playlist &playlist);
+
+
 int main()
-{
+{ 
+    Playlist myPlaylist = {"Jazz", nullptr, 0, 0};
+
+    addSong(myPlaylist, "Lover Girl");
+    addSong(myPlaylist, "A Night to Remember");
+    addSong(myPlaylist, "Let it Happen");
+
+    outputPlaylist(myPlaylist);
+
+    // this automatically frees memory so I dont have to delete the dynamic array in the main func
+    deletePlaylist(myPlaylist);
+
+    return 0;
 
 }
 
@@ -41,7 +56,7 @@ void addSong(Playlist &playlist, string newSong)
     {
         if (playlist.maxSongs == 0)
         {
-            playlist.maxSongs == 1;
+            playlist.maxSongs = 1;
         }
         else
         {
