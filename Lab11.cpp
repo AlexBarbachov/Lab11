@@ -4,6 +4,12 @@
 using namespace std;
 
 
+// function protos
+void addSong(Playlist &playlist, string newSong);
+void deletePlaylist(Playlist &playlist);
+void outputPlaylist(Playlist &playlist);
+
+
 // Will store the name, artists in the playlist, and some song names
 // Dynamic array will be the list of songs.
 struct Playlist
@@ -64,8 +70,30 @@ void addSong(Playlist &playlist, string newSong)
 
     // update new size + 1.
     playlist.numSongs++;
-    
+}
 
+// will free up memory for an new playlist
+void deletePlaylist(Playlist &playlist)
+{
+    delete [] playlist.songs;
+    playlist.songs = nullptr;
+    playlist.numSongs = 0;
+    playlist.maxSongs = 0;
+}
+
+// will print out every song in the playlist.
+void outputPlaylist(Playlist &playlist)
+{
+    cout << "Playlist: " << playlist.name << endl;
+    if (playlist.numSongs == 0)
+        cout << "Playlist is currently empty." << endl;
+    else
+    {
+        for (int i = 0; i < playlist.numSongs; i++)
+        {
+            cout << " | " << playlist.songs[i] << endl;
+        }
+    }
 }
 
 
